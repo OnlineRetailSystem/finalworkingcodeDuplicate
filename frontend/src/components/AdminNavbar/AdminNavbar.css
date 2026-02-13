@@ -1,0 +1,92 @@
+/* Navbar container and brand */
+.custom-navbar {
+  background: #f4f6f8 !important;
+  box-shadow: 0 1px 12px 0 rgba(180,180,192,0.07);
+  border-bottom: 1.5px solid #eeeeee;
+  position: sticky;
+  top: 0; left: 0; right: 0; z-index: 120;
+  min-height: 64px;
+}
+
+.company-name {
+  font-size: 1.38rem;
+  font-weight: 700;
+  color: #1e1e1e !important;
+  letter-spacing: .05em;
+  margin-bottom: 0 !important;
+  cursor: pointer;
+  transition: color .13s;
+}
+
+.company-name:active, .company-name:focus, .company-name:hover {
+  color: #2869e6 !important;
+}
+
+.navbar-container, .navbar-container-mobile {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 18px;
+  background: transparent;
+}
+
+/* Admin Navbar actions (right) */
+.admin-navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 19px;
+}
+
+.admin-navbar-btn {
+  background: linear-gradient(90deg, #232325 0%, #59597a 100%);
+  color: #fff;
+  border: none;
+  border-radius: 22px;
+  padding: 9px 20px;
+  font-size: 1.05em;
+  font-weight: 600;
+  letter-spacing: .01em;
+  cursor: pointer;
+  outline: none;
+  box-shadow: 0 2px 10px #e7e8f433;
+  transition: background 0.12s, color 0.12s;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.admin-navbar-btn:active,
+.admin-navbar-btn:focus,
+.admin-navbar-btn:hover {
+  background: linear-gradient(90deg, #18181c 0%, #232323 100%);
+  color: #fffde4;
+}
+
+.admin-navbar-logout {
+  background: linear-gradient(90deg, #932b1b 0%, #2a2020 100%);
+}
+.admin-navbar-logout:hover,
+.admin-navbar-logout:focus {
+  background: linear-gradient(90deg, #a31212 0%, #24223e 100%);
+  color: #fffde4 !important;
+}
+
+/* Input overrides for any searchbar if used in future */
+.admin-navbar-actions input,
+.admin-navbar-actions .form-control {
+  border-radius: 9px !important;
+  font-size: 1em;
+  padding: 7px 13px;
+}
+
+@media (max-width: 900px) {
+  .company-name { font-size: 1.08rem; }
+  .admin-navbar-actions { gap: 10px; }
+  .admin-navbar-btn { font-size: .94em; padding: 7px 14px; border-radius: 14px; }
+}
+@media (max-width: 600px) {
+  .navbar-container, .navbar-container-mobile { padding: 0 3vw; }
+  .admin-navbar-actions { gap: 7px; }
+  .admin-navbar-btn { padding: 6px 9px; font-size: .92em; }
+}

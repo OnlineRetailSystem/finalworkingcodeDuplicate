@@ -1,0 +1,158 @@
+.sr-bg {
+  background: #f4f6f8;
+  min-height: 60vh;
+  width: 100vw;
+  padding: 28px 0 60px 0;
+}
+.sr-loading, .sr-empty {
+  color: #444;
+  text-align: center;
+  padding: 64px 0 64px 0;
+}
+.sr-result-list {
+  max-width: 880px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+  padding: 10px 6vw;
+}
+.sr-result-card {
+  background: #fff;
+  border-radius: 13px;
+  box-shadow: 0 3px 24px #e2e4ee15;
+  border: 1.5px solid #ededf1;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 24px;
+  padding: 18px 24px 18px 20px;
+  position: relative;
+}
+.sr-result-imgside {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 144px;
+}
+
+.sr-result-img {
+  width: 130px;
+  height: 156px;
+  object-fit: contain;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  background: #f6f6fa;
+  box-shadow: 0 2px 7px #e7e7f1;
+}
+/* Add to compare checkbox */
+.sr-checkbox-label {
+  font-size: 0.98em;
+  color: #444;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  user-select: none;
+}
+.sr-checkbox {
+  width: 17px;
+  height: 17px;
+}
+
+.sr-result-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+}
+
+.sr-title-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.sr-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1 1 0;
+}
+.sr-badge-rating {
+  background: #278849;
+  color: #fff;
+  font-size: 0.97em;
+  font-weight: 600;
+  padding: 3px 10px 4px 10px;
+  border-radius: 5px;
+  margin-right: 6px;
+}
+.sr-title {
+  font-size: 1.19em;
+  font-weight: 700;
+  color: #212124;
+}
+.sr-price-block {
+  text-align: right;
+  min-width: 130px;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  align-items: flex-end;
+}
+.sr-price {
+  color: #131316;
+  font-weight: 700;
+  font-size: 1.38em;
+  letter-spacing: 0.01em;
+}
+.sr-badge-assured {
+  display: inline-block;
+  font-size: 0.99em;
+  color: #273374;
+  font-weight: 600;
+  padding-left: 6px;
+  vertical-align: middle;
+  /* Can use an Assured image/icon instead if needed */
+}
+.sr-features {
+  margin: 4px 0 0 0;
+  padding-left: 18px;
+  font-size: 0.97em;
+  color: #222;
+  list-style: disc;
+  line-height: 1.55;
+}
+.sr-bank-offer {
+  margin-top: 4px;
+  font-size: 0.96em;
+  color: #363d46;
+}
+.bank-offer-green {
+  color: #1c8f49;
+  font-weight: 500;
+  padding-left: 2px;
+}
+
+@media (max-width: 650px) {
+  .sr-result-list {
+    padding: 0 1vw;
+    gap:16px;
+  }
+  .sr-result-card {
+    padding: 10px 6px 16px 6px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+  .sr-title-row { flex-direction: column; gap: 4px; }
+  .sr-bank-offer { font-size: 0.93em; }
+}
+
+@media (max-width: 430px) {
+  .sr-result-list { padding: 0 1px; }
+  .sr-result-card { padding: 5px 3px;}
+  .sr-result-img { width: 80px; height: 95px; }
+}

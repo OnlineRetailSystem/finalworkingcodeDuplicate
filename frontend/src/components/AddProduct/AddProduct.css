@@ -1,0 +1,104 @@
+.addproduct-bg {
+  min-height: 100vh;
+  background: #f4f6f8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  padding-bottom: 42px;
+}
+.addproduct-form {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 7px 38px 0 #e3e3ef44, 0 1px 18px #e3e3ee15;
+  width: 100%;
+  max-width: 415px;
+  min-width: 0;
+  padding: 35px 24px 28px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 19px;
+  border: 1.3px solid #eaeaf1;
+}
+.addproduct-title {
+  font-size: 1.33em;
+  font-weight: 700;
+  color: #2c313a;
+  margin-bottom: 8px;
+  letter-spacing: .01em;
+  text-align: center;
+}
+.addproduct-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin-bottom: 8px;
+}
+.addproduct-form-row {
+  display: flex;
+  gap: 14px;
+}
+.addproduct-form-group label {
+  color: #242424;
+  font-size: .98em;
+  font-weight: 500;
+  margin-bottom: 3px;
+}
+.addproduct-input {
+  width: 100%;
+  padding: 11px 14px;
+  font-size: 1.06em;
+  border-radius: 7px;
+  border: 1.3px solid #e2e3ec;
+  background: #f8f9fc;
+  color: #1c1d22;
+  outline: none;
+  transition: border-color .17s, box-shadow .17s;
+}
+.addproduct-input:focus {
+  border: 1.5px solid #3e5aec;
+  background: #f5f8ff;
+  box-shadow: 0 2px 12px #d5d6e729;
+}
+
+.addproduct-textarea {
+  resize: vertical;
+  min-height: 50px;
+  max-height: 120px;
+}
+
+.addproduct-btn {
+  background: linear-gradient(90deg, #18181b 0%, #58585f 100%);
+  color: #fff;
+  font-weight: 600;
+  font-size: 1.13em;
+  border: none;
+  border-radius: 22px;
+  padding: 13px 0;
+  margin-top: 3px;
+  cursor: pointer;
+  box-shadow: 0 4px 20px #d9dbec1a;
+  transition: background .17s, color .13s;
+  width: 100%;
+  letter-spacing: 0.01em;
+}
+.addproduct-btn:hover,
+.addproduct-btn:focus {
+  background: linear-gradient(90deg, #232425 0%, #262632 100%);
+  color: #fffde4;
+}
+.addproduct-error {
+  color: #be1a2e;
+  font-size: 0.97em;
+  background: #f8e1e6;
+  border-radius: 6px;
+  padding: 8px 6px 7px 6px;
+  font-weight: 500;
+  text-align: center;
+}
+
+@media (max-width: 600px) {
+  .addproduct-form { padding: 13px 2vw 17px 2vw; }
+  .addproduct-title { font-size: 1.01em; }
+  .addproduct-form-row { flex-direction: column; gap: 8px; }
+}

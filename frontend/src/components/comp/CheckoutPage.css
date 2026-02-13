@@ -1,0 +1,43 @@
+/* src/pages/CheckoutPage.css */
+.checkout-container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.checkout-grid {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+/* Billing info styling */
+.billing-info-card {
+  flex: 1;
+  background: #fff;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  min-width: 300px;
+}
+
+.edit-btn {
+  margin-top: 10px;
+  padding: 8px 12px;
+  background: #188afb;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Order summary section */
+.order-summary-section {
+  flex: 1;
+  min-width: 300px;
+}

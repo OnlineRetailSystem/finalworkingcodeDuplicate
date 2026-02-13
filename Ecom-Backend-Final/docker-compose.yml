@@ -1,0 +1,303 @@
+services:
+
+  # ============================================================
+  # INFRASTRUCTURE
+  # ============================================================
+
+  # MySQL Database
+  mysql:
+    image: mysql:8.0
+    container_name: ecom-mysql
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: authservice
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - ./init-databases.sql:/docker-entrypoint-initdb.d/init-databases.sql
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-proot" ]
+    restart: always
+    networks:
+      - ecom-network
+
+  # Zookeeper (required by Kafka)
+  zookeeper:
+    image: confluentinc/cp-zookeeper:7.5.0
+    container_name: ecom-zookeeper
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    ports:
+      - "2181:2181"
+    healthcheck:
+      test: [ "CMD", "bash", "-c", "echo ruok | nc localhost 2181" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - ecom-network
+
+  # Apache Kafka
+  kafka:
+    image: confluentinc/cp-kafka:7.5.0
+    container_name: ecom-kafka
+    depends_on:
+      zookeeper:
+        condition: service_healthy
+    ports:
+      - "9092:9092"
+      - "29092:29092"
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,PLAINTEXT_HOST://localhost:29092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
+      KAFKA_NUM_PARTITIONS: 3
+    healthcheck:
+      test: [ "CMD", "kafka-topics", "--bootstrap-server", "localhost:9092", "--list" ]
+      interval: 15s
+      timeout: 10s
+      retries: 10
+    networks:
+      - ecom-network
+
+  # ============================================================
+  # EUREKA SERVER (Service Registry)
+  # ============================================================
+  eureka-server:
+    build:
+      context: ./eureka-server
+      dockerfile: Dockerfile
+    container_name: ecom-eureka-server
+    ports:
+      - "8761:8761"
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8761/actuator/health" ]
+      interval: 15s
+      timeout: 10s
+      retries: 10
+      start_period: 40s
+    networks:
+      - ecom-network
+
+  # ============================================================
+  # API GATEWAY
+  # ============================================================
+  apigateway:
+    build:
+      context: ./apigateway
+      dockerfile: Dockerfile
+    container_name: ecom-apigateway
+    ports:
+      - "8090:8090"
+    depends_on:
+      eureka-server:
+        condition: service_healthy
+    environment:
+      EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE: http://eureka-server:8761/eureka
+    networks:
+      - ecom-network
+
+  # ============================================================
+  # AUTH SERVICE
+  # ============================================================
+  authservice:
+    build:
+      context: ./authservice
+      dockerfile: Dockerfile
+    container_name: ecom-authservice
+    ports:
+      - "8087:8087"
+    depends_on:
+      mysql:
+        condition: service_healthy
+      kafka:
+        condition: service_healthy
+      eureka-server:
+        condition: service_healthy
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/authservice?useSSL=false&serverTimezone=UTC&createDatabaseIfNotExist=true
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:9092
+      EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE: http://eureka-server:8761/eureka
+    networks:
+      - ecom-network
+
+  # ============================================================
+  # PRODUCT / INVENTORY SERVICE
+  # ============================================================
+  productservice:
+    build:
+      context: ./productservice
+      dockerfile: Dockerfile
+    container_name: ecom-productservice
+    ports:
+      - "8082:8082"
+    depends_on:
+      mysql:
+        condition: service_healthy
+      kafka:
+        condition: service_healthy
+      eureka-server:
+        condition: service_healthy
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/productdb?useSSL=false&serverTimezone=UTC&createDatabaseIfNotExist=true
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:9092
+      EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE: http://eureka-server:8761/eureka
+    networks:
+      - ecom-network
+
+  # ============================================================
+  # ORDER SERVICE
+  # ============================================================
+  orderservice:
+    build:
+      context: ./orderservice
+      dockerfile: Dockerfile
+    container_name: ecom-orderservice
+    ports:
+      - "8083:8083"
+    depends_on:
+      mysql:
+        condition: service_healthy
+      kafka:
+        condition: service_healthy
+      eureka-server:
+        condition: service_healthy
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/orderdb?useSSL=false&serverTimezone=UTC&createDatabaseIfNotExist=true
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:9092
+      EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE: http://eureka-server:8761/eureka
+    networks:
+      - ecom-network
+
+  # ============================================================
+  # PAYMENT SERVICE
+  # ============================================================
+  paymentservice:
+    build:
+      context: ./paymentservice/stripepayment/stripepayment
+      dockerfile: Dockerfile
+    container_name: ecom-paymentservice
+    ports:
+      - "8088:8088"
+    depends_on:
+      kafka:
+        condition: service_healthy
+    environment:
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:9092
+    networks:
+      - ecom-network
+
+  # ============================================================
+  # CART SERVICE
+  # ============================================================
+  cartservice:
+    build:
+      context: ./cartservice
+      dockerfile: Dockerfile
+    container_name: ecom-cartservice
+    ports:
+      - "8084:8084"
+    depends_on:
+      mysql:
+        condition: service_healthy
+      eureka-server:
+        condition: service_healthy
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/cartdb?useSSL=false&serverTimezone=UTC&createDatabaseIfNotExist=true
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+      EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE: http://eureka-server:8761/eureka
+    networks:
+      - ecom-network
+
+  # ============================================================
+  # CATEGORY SERVICE
+  # ============================================================
+  categoryservice:
+    build:
+      context: ./categoryservice
+      dockerfile: Dockerfile
+    container_name: ecom-categoryservice
+    ports:
+      - "8085:8085"
+    depends_on:
+      mysql:
+        condition: service_healthy
+      eureka-server:
+        condition: service_healthy
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/categorydb?useSSL=false&serverTimezone=UTC&createDatabaseIfNotExist=true
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+      EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE: http://eureka-server:8761/eureka
+    networks:
+      - ecom-network
+
+  # ============================================================
+  # NOTIFICATION SERVICE (NEW)
+  # ============================================================
+  notificationservice:
+    build:
+      context: ./notificationservice
+      dockerfile: Dockerfile
+    container_name: ecom-notificationservice
+    ports:
+      - "8089:8089"
+    depends_on:
+      mysql:
+        condition: service_healthy
+      kafka:
+        condition: service_healthy
+      eureka-server:
+        condition: service_healthy
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/notificationdb?useSSL=false&serverTimezone=UTC&createDatabaseIfNotExist=true
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:9092
+      EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE: http://eureka-server:8761/eureka
+    networks:
+      - ecom-network
+
+  # ============================================================
+  # FRONTEND (React App)
+  # ============================================================
+  frontend:
+    build:
+      context: ../frontend
+      dockerfile: Dockerfile
+    container_name: ecom-frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      apigateway:
+        condition: service_started
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost/health"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+      start_period: 10s
+    networks:
+      - ecom-network
+
+volumes:
+  mysql-data:
+
+
+networks:
+  ecom-network:
+    driver: bridge

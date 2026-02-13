@@ -1,0 +1,286 @@
+html, body, #root {
+  min-height: 100vh;
+  height: 100%;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+/* Fullscreen background image */
+.electrobolt-signup {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  position: relative;
+  background: url('/background.jpg') center center no-repeat;
+  background-size: cover;
+  font-family: 'Segoe UI', SegoeUI, sans-serif;
+  color: #fff;
+  min-width: 320px;
+  overflow: hidden;
+}
+/* Left panel */
+.left-side {
+  flex: 1.2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+  padding: 32px 5vw 40px 5vw;
+  background: transparent;
+  min-width: 280px;
+}
+/* Heading row: site title and back button */
+.heading-row {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 22px;
+  margin-top: 0;
+  margin-bottom: 8px;
+  width: 100%;
+}
+.site-title {
+  font-size: 2.7em;
+  font-weight: 900;
+  letter-spacing: 1px;
+  margin: 0;
+  line-height: 1.1;
+}
+/* Back button: Transparent with border */
+.back-btn {
+  background: transparent;
+  color: #188afb;
+  border: 2px solid #188afb;
+  border-radius: 14px;
+  padding: 10px 23px;
+  font-weight: 600;
+  font-size: 1em;
+  cursor: pointer;
+  margin-top: 0;
+  margin-left: 0;
+  box-shadow: none;
+  transition: background .17s, color .17s;
+}
+.back-btn:hover {
+  background: #188afb;
+  color: #fff;
+  border-color: #1253a6;
+}
+/* Subtitle: bottom middle, partly above bottom edge */
+.subtitle {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  font-size: 1.35em;
+  font-weight: 600;
+  color: #fff;
+  text-shadow: 0 2px 9px #18181a67;
+  width: 100%;
+  pointer-events: none;
+}
+/* Right panel */
+.right-side {
+  flex: 1.8;
+  background: transparent;
+  padding: 84px 64px 44px 54px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 0 0 0 38px;
+  min-width: 370px;
+  backdrop-filter: blur(2px);
+}
+/* Form / inputs */
+.right-side h2 {
+  font-size: 2em;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+.toggle-link {
+  margin-bottom: 17px;
+  font-size: 1.08em;
+}
+input[type="text"], input[type="email"], input[type="password"] {
+  display: block;
+  width: 100%;
+  margin: 11px 0;
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: none;
+  background: #1d1937f2;
+  color: #fff;
+  font-size: 1.05rem;
+  box-shadow: 0 1px 6px #0001;
+  font-family: inherit;
+  letter-spacing: 0.01em;
+  outline: none;
+  transition: box-shadow .15s;
+}
+input:focus { box-shadow: 0 0 0 2px #188afb55; }
+.tnc-row {
+  display: flex;
+  align-items: center;
+  margin: 15px 0;
+}
+.tnc-row input[type=checkbox] { margin-right: 8px; min-width: 16px; min-height: 16px; }
+.tnc-link { color: #188afb; }
+.main-action {
+  width: 100%;
+  margin: 36px 0 12px;
+  background: #188afb;
+  color: #fff;
+  font-weight: 700;
+  border: none;
+  padding: 18px 0;
+  border-radius: 16px;
+  font-size: 1.13em;
+  cursor: pointer;
+  box-shadow: 0 2px 12px #188afb36;
+  letter-spacing: 0.01em;
+  transition: background .14s;
+}
+.main-action:hover { background: #155baf; }
+.error-msg {
+  color: #ff4255;
+  margin: 8px 0;
+  font-weight: 500;
+}
+.success-msg {
+  color: #53ffca;
+  margin: 8px 0;
+  font-weight: 500;
+}
+
+/* Modal for T&C (updated) */
+.modal-bg {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background: rgba(30,20,60,0.60);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  overflow: auto;
+}
+.modal-content {
+  background: #fff;
+  color: #333;
+  border-radius: 18px;
+  padding: 32px 20px;
+  /* Responsive modal sizing/fitting: */
+  width: 90vw;
+  max-width: 400px;
+  min-width: 0;
+  max-height: 89vh;
+  box-sizing: border-box;
+  box-shadow: 0 10px 40px #0002;
+  overflow-y: auto;
+  overflow-x: auto;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+@media (max-width: 600px) {
+  .modal-content {
+    width: 98vw;
+    max-width: 99vw;
+    padding: 15px 3vw;
+    font-size: 0.98em;
+  }
+}
+.close-btn {
+  background: #188afb;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 8px 28px;
+  margin-top: 18px;
+  font-weight: 500;
+  cursor: pointer;
+}
+.modal-content ul li {
+  margin: 10px 0;
+}
+
+/* Responsive */
+@media (max-width: 1000px) {
+  .electrobolt-signup {
+    flex-direction: column;
+  }
+  .right-side {
+    padding: 44px 8vw 34px 8vw;
+    border-radius: 0;
+    min-width: unset;
+  }
+  .left-side {
+    padding: 36px 6vw;
+    align-items: flex-start;
+  }
+  .subtitle {
+    font-size: 1em;
+    bottom: 18px;
+  }
+}
+@media (max-width: 650px) {
+  .left-side, .right-side {
+    padding: 20px 2vw;
+  }
+  .site-title { font-size: 2.05em; }
+  .right-side h2 { font-size: 1.35em; }
+  .subtitle { font-size: 1em; }
+}
+
+
+.navbar {
+  background: #232c3e;
+  color: #fff;
+  font-size: 2em;
+  padding: 24px 48px;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.navbar-right { font-size: 1.8em; }
+.cartpage-root { background: #fff; min-height: 100vh; }
+.cartpage-container { display: flex; justify-content: flex-start; align-items: flex-start; gap: 44px; padding: 44px 60px; }
+.cart-heading { font-size: 2.7em; margin-bottom: 42px; }
+.cartpage-main { flex: 2; }
+.cart-item {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  margin-bottom: 39px;
+  min-width: 330px;
+}
+.cart-item-image { width: 99px; height: 99px; object-fit: contain; border-radius: 8px; background: #f0f2f5; }
+.cart-item-details {
+  min-width: 160px;
+  font-size: 1.35em;
+  font-weight: 600;
+}
+.cart-item-meta {
+  margin-left: auto;
+  text-align: right;
+  font-size: 1.07em;
+}
+.cart-item-meta-price { font-weight: 600; font-size: 1.13em; }
+.order-summary {
+  background: #f7f9fc;
+  border-radius: 14px;
+  box-shadow: 0 2px 24px #18386818;
+  padding: 30px 26px 32px;
+  min-width: 276px; max-width: 320px;
+  height: fit-content;
+  font-size: 1.13em;
+  margin-top: 45px;
+}
+.order-row { display: flex; justify-content: space-between; padding: 6px 0; }
+.order-total { font-weight: bold; font-size: 1.08em; border-top: 1.5px solid #e3e4ef; margin-top: 12px; }
+.order-btn {
+  width: 100%; margin-top: 24px; background: #278fff; color: #fff; font-weight: 700;
+  border: none; border-radius: 10px; font-size: 1.13em; padding: 13px 0; cursor: pointer;
+  box-shadow: 0 2px 12px #188afb38;
+}
+.order-btn:hover { background: #155baf; }

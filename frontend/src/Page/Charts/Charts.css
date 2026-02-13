@@ -1,0 +1,44 @@
+.admin {
+  /* Change to single column or flex */
+  display: block;
+  /* or use flex: display: flex; flex-direction: column; */
+  background: #0f172a; /* keep dark background */
+  min-height: calc(100vh - 64px); /* navbar height assumed 64px */
+  /* Removed grid-template-columns and gap */
+}
+
+.admin__main {
+  padding: 16px;
+  /* you can add max-width or margin auto if you want fixed max width */
+  max-width: 1200px;
+  margin: 0 auto; /* center content */
+}
+
+/* Charts grid remains the same */
+.charts__grid {
+  margin-top: 12px;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 14px;
+  overflow: visible;
+}
+
+.charts__item {
+  grid-column: span 6;
+}
+
+/* Responsive remains the same */
+@media (max-width: 1200px) {
+  .charts__item {
+    grid-column: span 12;
+  }
+}
+
+@media (max-width: 900px) {
+  /* no sidebar now, so no grid change on .admin needed */
+  
+  /* adjust main padding */
+  .admin__main {
+    padding: 12px;
+  }
+}

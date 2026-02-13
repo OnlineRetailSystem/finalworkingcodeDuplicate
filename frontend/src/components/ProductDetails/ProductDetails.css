@@ -1,0 +1,309 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: #f4f6f8;
+}
+.pdp-page-bg {
+  background: #f4f6f8;
+  min-height: 100vh;
+  width: 100vw;
+}
+.pdp-main {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  min-height: 100vh;
+  width: 100%;
+}
+.pdp-details-section {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin: 0;
+  padding: 36px 0 0 0;
+  background: transparent;
+}
+.pdp-content {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 10px 38px 0 #e9e9ef44, 0 1px 16px #ebebf4b0;
+  width: 100%;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 60px 44px 42px 44px;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  gap: 56px;
+}
+.pdp-close-btn {
+  display: none !important;
+}
+.pdp-img-section {
+  min-width: 230px;
+  max-width: 340px;
+  width: 32vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #f6f7fa;
+  border-radius: 15px;
+  box-shadow: 0 2px 22px #dedee266;
+  padding: 15px 20px 12px 20px;
+}
+.pdp-img-main {
+  width: 100%;
+  height: 310px;
+  max-width: 340px;
+  object-fit: contain;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 3px 14px #f1f1f488;
+  display: block;
+}
+.pdp-thumbnail-nav {
+  display: flex;
+  gap: 7px;
+  margin-top: 10px;
+  justify-content: center;
+}
+.pdp-dot {
+  width: 21px;
+  height: 2px;
+  border-radius: 2px;
+  background: #dadbde;
+  opacity: 0.7;
+  transition: background 0.17s, opacity 0.16s, width 0.13s;
+}
+.pdp-dot.active {
+  background: #444;
+  width: 27px;
+  opacity: 1;
+}
+.pdp-info-section {
+  flex: 1 1 0;
+  min-width: 0;
+  padding-top: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.pdp-breadcrumbs {
+  font-size: 0.94em;
+  color: #888;
+  margin-bottom: 14px;
+}
+.pdp-breadcrumbs span {
+  color: #111;
+  font-weight: 500;
+}
+.pdp-title {
+  font-weight: 700;
+  font-size: 1.37em;
+  margin: 0 0 18px 0;
+  letter-spacing: 0.01em;
+  color: #191a1e;
+}
+.pdp-desc {
+  color: #444;
+  font-size: 1em;
+  margin-bottom: 18px;
+  line-height: 1.45;
+  font-weight: 450;
+}
+.pdp-highlights {
+  margin-bottom: 19px;
+  font-size: 1em;
+}
+.pdp-highlights span {
+  font-weight: 600;
+  margin-bottom: 4px;
+  display: inline-block;
+  color: #191a1e;
+}
+.pdp-highlights ul {
+  padding: 0 0 0 18px;
+  margin: 0;
+  color: #232424;
+}
+.pdp-highlights li {
+  margin-bottom: 0.2em;
+  font-size: 0.96em;
+}
+.pdp-row {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  margin-bottom: 22px;
+  margin-top: 2px;
+}
+.pdp-row-big { font-size: 1.06em; }
+.pdp-label {
+  color: #888;
+  font-size: 0.91em;
+  margin-bottom: 2px;
+  font-weight: 490;
+  letter-spacing: 0.01em;
+}
+.pdp-value {
+  font-weight: 600;
+  font-size: 1.01em;
+  color: #202127;
+}
+.pdp-badge {
+  background: #f6f7fa;
+  border-radius: 11px;
+  padding: 3px 14px;
+  display: inline-block;
+  border: 1.3px solid #ebecf0;
+  min-width: 30px;
+  text-align: center;
+  font-size: .98em;
+}
+.pdp-price-main {
+  margin-left: 24px;
+  font-size: 1.7em;
+  color: #191920;
+  font-weight: 700;
+  display: flex;
+  align-items: flex-end;
+  background: #f7f8fa;
+  border-radius: 8px;
+  padding: 6px 20px 8px 18px;
+  box-shadow: 0 1px 5px #eceeef24;
+}
+.pdp-currency {
+  font-size: 0.87em;
+  font-weight: 400;
+  opacity: 0.7;
+  margin-right: 2px;
+}
+
+/* === ADD TO CART & QTY ROW === */
+.pdp-btn-row {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  margin-top: 3px;
+}
+.pdp-btn {
+  margin-top: 10px;
+  padding: 12px 32px;
+  font-size: 1.08em;
+  font-weight: 600;
+  border: none;
+  border-radius: 7px;
+  cursor: pointer;
+  transition: background .17s, border .14s, color .16s;
+}
+.pdp-btn-black {
+  background: #222;
+  color: #fff;
+  box-shadow: 0 2px 8px #1a1b1f16;
+}
+.pdp-btn-black:hover { background: #444; }
+.pdp-btn-outline {
+  background: #fff;
+  color: #353535;
+  border: 1.3px solid #222;
+  box-shadow: none;
+}
+.pdp-btn-outline:hover {
+  color: #111;
+  border-color: #444;
+  background: #f4f4f7;
+}
+
+/* Horizontal, premium, square-ish + / - qty row */
+.pdp-qty-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: auto;
+  margin-bottom: 2px;
+  margin-top: 8px;
+  justify-content: center;
+}
+.pdp-qty-btn {
+  background: linear-gradient(90deg, #18181b 0%, #58585f 100%);
+  color: #fff;
+  border: none;
+  border-radius: 9px;
+  width: 45px;
+  height: 45px;
+  font-size: 1.18em;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  outline: none;
+  transition: background .14s, color .13s, box-shadow .14s;
+  box-shadow: 0 2.5px 14px #e8e9ec44;
+  padding: 0;
+}
+.pdp-qty-btn:disabled {
+  opacity: 0.56;
+  cursor: not-allowed;
+}
+.pdp-qty-btn:hover:not(:disabled),
+.pdp-qty-btn:focus:not(:disabled) {
+  background: linear-gradient(90deg, #232326 0%, #393941 100%);
+  color: #fffde4;
+}
+.pdp-qty-num {
+  min-width: 32px;
+  text-align: center;
+  font-size: 1.16em;
+  font-weight: 700;
+  color: #232324;
+  background: #f8f8fa;
+  border-radius: 10px;
+  padding: 0 13px;
+  border: 1px solid #e2e3ea;
+  margin: 0 2px;
+}
+.pdp-loading, .pdp-error {
+  display: flex; align-items: center; justify-content: center;
+  min-height: 300px;
+  color: #aaa;
+  font-size: 1.11em;
+}
+.pdp-related-section {
+  width: 100%;
+  margin: 26px 0 0 0;
+  padding: 0;
+  background: transparent;
+}
+@media (max-width: 1100px) {
+  .pdp-content {
+    padding: 28px 2vw 22px 2vw;
+    gap: 18px;
+    max-width: 100vw;
+  }
+}
+@media (max-width: 800px) {
+  .pdp-details-section { padding-top: 12px; }
+  .pdp-content {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 18px 4vw 18px 4vw;
+    gap: 8px;
+  }
+}
+@media (max-width: 600px) {
+  .pdp-content { padding: 6px 1vw 12px 1vw; border-radius: 9px; }
+  .pdp-details-section { padding: 8px 0 0 0; }
+  .pdp-qty-row { gap: 4px; }
+  .pdp-qty-btn { width: 34px; height: 34px; font-size: 1.12em; border-radius: 6px;}
+  .pdp-qty-num { padding: 0 7px; min-width: 22px; font-size: 1em; }
+}
+@media (max-width: 400px) {
+  .pdp-title { font-size: .99em; }
+  .pdp-price-main { font-size: 1.09em; }
+  .pdp-qty-row { gap: 3px; }
+  .pdp-qty-btn { width: 28px; height: 28px; font-size: .97em; border-radius: 5px;}
+  .pdp-qty-num { padding: 0 4px;}
+}
