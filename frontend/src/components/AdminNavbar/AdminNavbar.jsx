@@ -65,7 +65,7 @@ export default function AdminNavbar() {
           role="button"
           onClick={handleLogoClick}
         >
-          NexBuy-Admin
+          SparkCart-Admin
         </Navbar.Brand>
         <Nav className="ms-auto navbar-icons">
           <div className="admin-navbar-actions">

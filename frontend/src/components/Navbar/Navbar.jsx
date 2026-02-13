@@ -139,7 +139,7 @@ const CustomNavbar = ({ isSignedIn = false, cartCount }) => {
                 tabIndex={0}
                 role="button"
               >
-                NexBuy
+                SparkCart
               </Navbar.Brand>
             </div>
           ) : (
@@ -152,7 +152,7 @@ const CustomNavbar = ({ isSignedIn = false, cartCount }) => {
                 role="button"
                 onClick={handleHomeLogoClick}
               >
-                NexBuy
+                SparkCart
               </Navbar.Brand>
               <div className={`navbar-search-center${showSearch ? " show" : ""}`}>
                 {showSearch && renderSearchBar()}

@@ -27,19 +27,9 @@ const Footer = () => {
             <li><a href="#">Contact Us</a></li>
             <li><a href="#">About Us</a></li>
             <li><a href="#">Careers</a></li>
-            <li><a href="#">NexBuy Stories</a></li>
+            <li><a href="#">SparkCart Stories</a></li>
             <li><a href="#">Press</a></li>
             <li><a href="#">Corporate Information</a></li>
-          </ul>
-        </div>
-        <div className="footer-col">
-          <div className="footer-title">GROUP Details</div>
-          <ul>
-            <li><a href="#">Alita</a></li>
-            <li><a href="#">Pranav</a></li>
-            <li><a href="#">Prabhat</a></li>
-            <li><a href="#">Suryakant</a></li>
-            <li><a href="#">Pavan</a></li>
           </ul>
         </div>
         <div className="footer-col">
@@ -66,7 +56,7 @@ const Footer = () => {
         <div className="footer-col contact-col">
           <div className="footer-title">Mail Us:</div>
           <div className="footer-contact-text">
-            NexBuy, <br />
+            SparkCart, <br />
             Pune, Maharashtra, India<br />
           </div>
           <div className="footer-social-title">Social:</div>
@@ -80,7 +70,7 @@ const Footer = () => {
         <div className="footer-col registered-col">
           <div className="footer-title">Registered Office Address:</div>
           <div className="footer-contact-text">
-            NexBuy, Pune, Maharashtra, India<br />
+            SparkCart, Pune, Maharashtra, India<br />
             CIN : U51109KA2012PTC066107<br />
             <span className="footer-reg-contact">
               Telephone: <a href="tel:044-45614700" className="footer-blue">044-45614700</a> / <a href="tel:044-67415800" className="footer-blue">044-67415800</a>
@@ -94,7 +84,7 @@ const Footer = () => {
           <a href="#" className="footer-bottom-link"><FaAd />&ensp;Advertise</a>
           <a href="#" className="footer-bottom-link"><FaGift />&ensp;Gift Cards</a>
           <a href="#" className="footer-bottom-link"><MdHelp />&ensp;Help Center</a>
-          <span className="footer-copyright">© 2007-2025 NexBuy.com</span>
+          <span className="footer-copyright">© 2007-2025 SparkCart.com</span>
           <div className="footer-payments">
             <FaCcVisa title="Visa" />
             <FaCcMastercard title="MasterCard" />
